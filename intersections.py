@@ -3,11 +3,21 @@ Program that counts the number of interior intersections
 """
 
 import random 
+import csv
+from collections import Counter
 
 def main():
-    list1 = generateRandomPermutaion(7)
-    print(list1)
-    print(countIntersections(list1))
+    list_of_intersections = list()
+    for i in range(10000000):
+        list1 = generateRandomPermutaion(15)
+        new_int = countIntersections(list1)
+        list_of_intersections.append(new_int)
+    data_dict = Counter(list_of_intersections)
+    print(data_dict)
+    w = csv.writer(open("intersections.csv", "w"))
+    for key, val in data_dict.items():
+        w.writerow([key, val])
+    
     
     
 
